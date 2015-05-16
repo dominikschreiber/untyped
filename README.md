@@ -51,10 +51,10 @@ var untyped = require('untyped')
 // => model == {name: {givenname: true, familyname: true}, address: {zip: true, street: true}}
 ```
 
-and filters JavaScript objects against the parsed models:
+and validates JavaScript objects against the parsed models:
 
 ```javascript
-untyped.filter({
+untyped.validate({
     name: {
         givenname: 'Foo',
         middlename: 'Wololo',
@@ -90,7 +90,7 @@ And use it:
 
 ```javascript
 untyped.parse(schemastring()); // parses an object schema
-untyped.filter(anyobject(), parsedmodel()); // filters an object based on the parsed string
+untyped.validate(anyobject(), parsedmodel()); // validates an object based on the parsed string
 ```
 
 ## examples
@@ -110,7 +110,7 @@ app.use('/', function(req, res, next) {
         };
 
     if (req.query.fields) {
-        res.send(untyped.filter(
+        res.send(untyped.validate(
             longresult,
             untyped.parse(req.query.fields)
         ));
