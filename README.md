@@ -93,11 +93,126 @@ untyped.parse(schemastring()); // parses an object schema
 untyped.validate(anyobject(), parsedmodel()); // validates an object based on the parsed string
 ```
 
+## features
+
+See the [tests](https://github.com/dominikschreiber/untyped/blob/master/test/index.spec.js)
+for more detailed feature descriptions.
+
+### `untyped.parse(unparsedschema)`
+
+parses an untyped schema to a JSON object.
+
+```javascript
+untyped.parse('foo,bar:(baz,bam)')
+// =>
+{
+    foo: true,
+    bar: {
+        baz: true,
+        bam: true
+    }
+}
+```
+
+### `untyped.stringify(jsonschema)`
+
+creates a schema string from a JSON object.
+
+```javascript
+untyped.stringify({
+    foo: true,
+    bar: {
+        baz: true,
+        bam: true
+    }
+})
+// =>
+'foo,bar:(baz,bam)'
+```
+
+### `untyped.validate(object, jsonschema)`
+
+picks only (nested) properties from `object` that match `jsonschema`.
+
+```javascript
+untyped.validate({
+    foo: 'Yep',
+    wohoo: 'Nope'
+}, {
+    foo: true,
+    bar: {
+        baz: true,
+        bam: true
+    }
+})
+// =>
+{
+    foo: 'Yep'
+}
+```
+
+### `untyped.matches(object, filter)`
+
+checks if `object` matches `filter`, where `filter` is defined as
+
+```javascript
+{
+    property: // the property that should be checked, a schema string (e.g. 'foo:(bar)')
+    match: // one of ['=', '~', '|', '*', '^', '$']
+    filter: // the value that the property should match
+}
+```
+
+with the following match types:
+
+- `=` exact match
+- `~` one of match
+- `|` exact/starts with match
+- `*` contains match
+- `^` startswith match
+- `$` endswith match
+
+```javascript
+untyped.matches({
+    foo: 'Yep',
+    bar: 'Nope'
+}, {
+    property: 'foo',
+    match: '*',
+    filter: 'p'
+})
+// =>
+true
+```
+
+### `untyped.filter(objects, filters)`
+
+filters a list of `objects` find all that match all `filters`
+
+```javascript
+untyped.filter([{
+    foo: 'Yep',
+    bar: 'Nope'
+}, {
+    foo: 'Nope',
+    bar: 'Nope'
+}], [
+    property: 'foo',
+    match: '=',
+    filter: 'Yep'
+])
+// =>
+[{
+    foo: 'Yep',
+    bar: 'Nope'
+}]
+```
+
 ## examples
 
 ### [express](http://expressjs.com) + untyped:
 
-```
+```javascript
 var app = require('express')()
   , untyped = require('untyped');
 
