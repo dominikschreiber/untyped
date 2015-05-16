@@ -1,5 +1,12 @@
 # untyped
 
+[![travis](https://img.shields.io/travis/dominikschreiber/untyped.svg?style=flat-square)](https://travis-ci.org/dominikschreiber/untyped)
+[![coveralls](https://img.shields.io/coveralls/dominikschreiber/untyped.svg?style=flat-square)](https://coveralls.io/r/dominikschreiber/untyped)
+[![npm-version](https://img.shields.io/npm/v/untyped.svg?style=flat-square)](https://npmjs.com/package/untyped)
+[![npm-downloads](https://img.shields.io/npm/dm/untyped.svg?style=flat-square)](https://npmjs.com/package/untyped)
+[![npm-license](https://img.shields.io/npm/l/untyped.svg?style=flat-square)](https://github.com/dominikschreiber/untyped/blob/master/LICENSE)
+[![twitter](https://img.shields.io/badge/%40-domischreib-55acee.svg?style=flat-square)](https://twitter.com/@domischreib)
+
 A parser/validator for untyped object schemata.
 
 *This is an export of model.js from [dominikschreiber/express-persistent-resource](https://github.com/dominikschreiber/express-persistent-resource).*
