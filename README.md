@@ -2,6 +2,8 @@
 
 A parser/validator for untyped object schemata.
 
+*This is an export of model.js from [dominikschreiber/express-persistent-resource](https://github.com/dominikschreiber/express-persistent-resource).*
+
 ## what is this?
 
 Untyped object schemata are common in REST partial response queries and look like
