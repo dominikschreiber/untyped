@@ -163,7 +163,7 @@ checks if `object` matches `filter`, where `filter` is defined as
 }
 ```
 
-with the following match types:
+with the following match types (similar to [css3 attribute selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors#Summary)):
 
 - `=` exact match
 - `~` one of match
